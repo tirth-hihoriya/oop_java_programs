@@ -4,6 +4,9 @@ class Record
     int marks[] = new int[50];  
 
     Record()
+    {
+        
+    }
 
 }
 
