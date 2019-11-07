@@ -56,8 +56,10 @@ class Exam extends Student
         Scanner sca = new Scanner(System.in);
         for(int i=1; i<=marks.length;i++)
         {
+            do{
             System.out.print("Enter marks of subject " +i +  ":");
             marks[i-1] = sca.nextInt();
+            }while(marks[i-1]<0 || marks[i-1]>100);
         }
 
     }
@@ -109,3 +111,10 @@ class p8c
     }
 
 }
+
+
+// (8c)  Consider an example of declaring the examination result. Design three classes: Student, Exam, and Result. 
+// The Student class has data members such as those representing roll number, name etc. 
+// Create the class Exam by inheriting the Student class. The Exam class adds fields representing 
+// the marks scored in six subjects. Derive the Result from the Exam class and it has its own fields such as total_Marks. 
+// Write an interactive program to model this relationship.

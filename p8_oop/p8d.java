@@ -18,19 +18,6 @@ class Medicine
         
     }
 
-    // public void setName()
-    // {
-    //     System.out.println("Enter the name of company :");
-    //     name = sca.nextLine();
-        
-    // }
-    // public void setAddress()
-    // {
-    //     System.out.println("Enter the address of company :");
-    //     address = sca.nextLine();
-    // }
-
-
 }
 
 class Tablet extends Medicine

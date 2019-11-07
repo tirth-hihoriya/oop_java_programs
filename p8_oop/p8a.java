@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 abstract class Instrument
 {
     abstract void play();
@@ -35,14 +33,7 @@ class p8a
     public static void main(String args[])
     {
         Instrument inst[] = new Instrument[10];
-
-        // for(int j=0;j<inst.length;j++)
-        // {
-        //     int r = (int) (Math.random()*3);
-        //     if(r==0)  inst[j] = new Piano();
-        //     else if(r==1)  inst[j] = new Flute();
-        //    else inst[j] = new Guitar();
-        // }
+        
         int r;
         System.out.println();
         for(int i=0;i<inst.length; i++)
