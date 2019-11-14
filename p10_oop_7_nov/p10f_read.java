@@ -1,5 +1,4 @@
-// Read in the data.txt file using this program
-// to write the data use prac10fReader class
+// content is in students.txts
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 public class p10f_read {
 
     public static void main(String[] args) {
-        File file = new File("data.txt");
+        File file = new File("students.txt");
         Scanner sca = new Scanner(System.in);
         try {
             sca = new Scanner(file);

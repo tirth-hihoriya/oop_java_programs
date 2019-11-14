@@ -1,5 +1,4 @@
-// write in the data.txt file using this program
-// to read the data use prac10fWriter class
+// content is in students.txts
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,6 +36,7 @@ public class p10f_write {
                 rollNo = sca.nextInt();
                 break;
             }catch(Exception E){
+                
                 System.out.println(E.getMessage());
             }
         }
@@ -73,7 +73,7 @@ public class p10f_write {
                 if(choice.equals("")) throw new EmptyFieldException("choice Can't be empty");
                 
                 if (choice.toLowerCase().contains("yes")) {
-                    File f = new File("data.txt");
+                    File f = new File("students.txt");
                     try{
                     PrintWriter pw =new PrintWriter(new FileOutputStream(f,true));
                     pw.append(Name).append(",").append("" + rollNo).append(",").append(Address).append(",").append("" + age).append("\n");

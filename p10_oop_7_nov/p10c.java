@@ -2,9 +2,10 @@
 // Enter the name to Search in the command Line argument that is available in file   `subjects.txt`
 // In command line :   `java p10c oop dsa dc `   <----- Example
 
-import java.util.Scanner;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 
 class p10c {
@@ -12,39 +13,44 @@ class p10c {
         File subjects = new File("subjects.txt");
 
         for (String find : args) {
-            Thread t = new Thread(new Search(subjects, find));
+            Thread t = new Thread(new Search_item(subjects, find));
             t.start();
         }
     }
 }
 
-class Search implements Runnable{
+class Search_item implements Runnable{
 
     File subjects;
     String find;
 
-    Search(File subjects, String find){
+    Search_item(File subjects, String find){
         this.subjects = subjects;
         this.find = find;
     }
 
     @Override
     public  void run() {
-        Scanner input;
+        BufferedReader read;
+
         try{
-        input = new Scanner(subjects);
+        read = new BufferedReader(new FileReader("subjects.txt"));
         }
         catch(FileNotFoundException e){
             System.out.println("File Not Found...!!!");
             return;
         }
         boolean flag = false;
-        while(input.hasNextLine()) {
-            flag = input.nextLine().toLowerCase().contains(find.toLowerCase());
+        
+        try{
+        while(read.readLine()!=null) {
+            flag = read.readLine().toLowerCase().contains(find.toLowerCase());
             if (flag) {
                 break;
             }
         }
+    }
+    catch(Exception e){};
 
         if(flag){
             System.out.println(find + " found in the file");
@@ -52,6 +58,7 @@ class Search implements Runnable{
         else{
             System.out.println(find + " not found in the file");
         }
-        input.close();
+        try{read.close();} catch(Exception e){};
+
     }
 }

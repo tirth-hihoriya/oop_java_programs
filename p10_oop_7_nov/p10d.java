@@ -1,20 +1,25 @@
-// To run this program use ...
-// java prac10d file1.txt file2.txt
 
+
+// java p10d f1.txt f2.txt   ---> example
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Random;
-import java.util.Scanner;
+
 
 public class p10d {
     public static void main(String[] args) {
         File f1 = new File(args[0]);
         File f2 = new File(args[1]);
 
-        Thread t = new Thread(new printData(f1));
+        Thread t1 = new Thread(new printData(f1));
         Thread t2 = new Thread(new printData(f2));
 
-        t.start();
+        
+
+        t1.start();
         t2.start();
     }
 }
@@ -29,25 +34,26 @@ class printData implements Runnable {
     @Override
     public void run() {
 
-        Scanner input;
+        BufferedReader read;
         Random x = new Random();
 
         try {
-            input = new Scanner(file);
+            read = new BufferedReader(new FileReader(file.getName()));
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
             return;
         }
 
-        while (input.hasNextLine()) {
-            try {
-                Thread.sleep(x.nextInt(10000));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println(file.getName() +" "+ input.nextLine());
+        try{
+        while (read.readLine()!=null) {
+
+            try {    Thread.sleep(x.nextInt(100));   } catch (InterruptedException e) {e.printStackTrace();}
+            
+            System.out.println(file.getName() +" ---> "+ read.readLine());
         }
-        input.close();
+
+       read.close();}
+        catch(Exception e){};
 
     }
 }

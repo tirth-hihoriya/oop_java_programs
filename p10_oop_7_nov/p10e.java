@@ -1,55 +1,62 @@
-// To run this program use...
-// java prac10e file1.txt file2.txt
 
+
+// java p10d f1.txt f2.txt   ---> example
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.util.Random;
 
-/**
- * prac9e
- */
+
 public class p10e {
     public static void main(String[] args) {
+        File f1 = new File(args[0]);
+        File f2 = new File(args[1]);
 
-        Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-        Thread t = new Thread(new printData2(new File(args[0])));
-        Thread t2 = new Thread(new printData2(new File(args[1])));
+        Thread t1 = new Thread(new printData(f1));
+        Thread t2 = new Thread(new printData(f2));
 
-        // IllegalArgumentException in this method
-        // t.setPriority(+2);
-        // t2.setPriority(-2);
+        t1.setPriority(Thread.NORM_PRIORITY + 2);
+        t2.setPriority(Thread.NORM_PRIORITY - 2);
+        
 
-        t.setPriority(Thread.NORM_PRIORITY);
-        t2.setPriority(Thread.MIN_PRIORITY);
-
-        t.start();
+        t1.start();
         t2.start();
     }
-    
 }
 
-class printData2 implements Runnable {
+class printData implements Runnable {
     File file;
 
-    printData2(File file) {
+    printData(File file) {
         this.file = file;
     }
 
     @Override
     public void run() {
 
-        Scanner input;
+        BufferedReader read;
+        Random x = new Random();
 
         try {
-            input = new Scanner(file);
+            read = new BufferedReader(new FileReader(file.getName()));
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found");
             return;
         }
 
-        while (input.hasNextLine()) {
-            System.out.println(file.getName() +" "+ input.nextLine());
+        try{
+        String s;
+        while ((s=read.readLine())!=null) {
+
+            try {    Thread.sleep(x.nextInt(100));   } catch (InterruptedException e) {e.printStackTrace();}
+            
+            System.out.println(file.getName() +" ---> "+ s);
         }
-        input.close();
+
+       read.close();}
+        catch(Exception e){};
+
     }
 }
