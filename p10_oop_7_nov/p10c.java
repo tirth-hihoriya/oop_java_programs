@@ -1,18 +1,18 @@
-// This program searches for the name available in the names.txt
-// Enter the name to Search in the command Line argument
 
-// Example: java prac10c Shrey Kenil Akshay 
+// Enter the name to Search in the command Line argument that is available in file   `subjects.txt`
+// In command line :   `java p10c oop dsa dc `   <----- Example
 
+import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+
 
 class p10c {
     public static void main(String[] args) {
-        File inSearch = new File("names.txt");
+        File subjects = new File("subjects.txt");
 
-        for (String toSearch : args) {
-            Thread t = new Thread(new Search(inSearch, toSearch));
+        for (String find : args) {
+            Thread t = new Thread(new Search(subjects, find));
             t.start();
         }
     }
@@ -20,36 +20,37 @@ class p10c {
 
 class Search implements Runnable{
 
-    File inSearch;
-    String toSearch;
+    File subjects;
+    String find;
 
-    Search(File inSearch, String toSearch){
-        this.inSearch = inSearch;
-        this.toSearch = toSearch;
+    Search(File subjects, String find){
+        this.subjects = subjects;
+        this.find = find;
     }
 
     @Override
-    public void run() {
+    public  void run() {
         Scanner input;
         try{
-        input = new Scanner(inSearch);
-        }catch(FileNotFoundException e){
-            System.out.println("File Not Found");
+        input = new Scanner(subjects);
+        }
+        catch(FileNotFoundException e){
+            System.out.println("File Not Found...!!!");
             return;
         }
         boolean flag = false;
         while(input.hasNextLine()) {
-            flag = input.nextLine().toLowerCase().contains(toSearch.toLowerCase());
+            flag = input.nextLine().toLowerCase().contains(find.toLowerCase());
             if (flag) {
                 break;
             }
         }
 
         if(flag){
-            System.out.println(toSearch + " found in the file");
+            System.out.println(find + " found in the file");
         }
         else{
-            System.out.println(toSearch + " not found in the file");
+            System.out.println(find + " not found in the file");
         }
         input.close();
     }

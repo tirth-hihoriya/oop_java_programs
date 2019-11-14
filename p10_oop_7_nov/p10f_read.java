@@ -5,20 +5,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- * prac10fReader
- */
 public class p10f_read {
 
     public static void main(String[] args) {
         File file = new File("data.txt");
-        Scanner S;
+        Scanner sca = new Scanner(System.in);
         try {
-            S = new Scanner(file);
-            S.useDelimiter("[\n,]");
+            sca = new Scanner(file);
+            sca.useDelimiter("[\n,]");
 
-            while (S.hasNext()) {
-                System.out.println("Name: " + S.next() + "\nRoll No: " + S.next() + "\nAddress: " + S.next() + "\nAge: " + S.next() + "\n\n\n");                
+            while (sca.hasNext()) {
+                System.out.println("Name: " + sca.next() + "\nRoll No: " + sca.next() + "\nAddress: " + sca.next() + "\nAge: " + sca.next() + "\n\n\n");                
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
