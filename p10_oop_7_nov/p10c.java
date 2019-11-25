@@ -1,6 +1,6 @@
 
 // Enter the name to Search in the command Line argument that is available in file   `subjects.txt`
-// In command line :   `java p10c oop dsa dc `   <----- Example
+// In command line :   `java p10c oop dsa cp `   <----- Example
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,9 +27,10 @@ class Search_item implements Runnable{
     Search_item(File subjects, String find){
         this.subjects = subjects;
         this.find = find;
+        
     }
 
-    @Override
+    
     public  void run() {
         BufferedReader read;
 
@@ -44,13 +45,15 @@ class Search_item implements Runnable{
         
         try{
         while(read.readLine()!=null) {
+           
             flag = read.readLine().toLowerCase().contains(find.toLowerCase());
+            
             if (flag) {
                 break;
+              }
             }
         }
-    }
-    catch(Exception e){};
+        catch(Exception e){};
 
         if(flag){
             System.out.println(find + " found in the file");

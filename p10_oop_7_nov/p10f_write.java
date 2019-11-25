@@ -1,6 +1,7 @@
 // content is in students.txts
 
-import java.io.File;
+import java.io.BufferedWriter;
+import java.io.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -74,12 +75,16 @@ public class p10f_write {
                 
                 if (choice.toLowerCase().contains("yes")) {
                     File f = new File("students.txt");
-                    try{
-                    PrintWriter pw =new PrintWriter(new FileOutputStream(f,true));
+                    try{ 
+                    FileWriter csvwriter = new FileWriter(f,true);
+                    BufferedWriter pw = new BufferedWriter(csvwriter);
+                    //PrintWriter pw =new PrintWriter(bw);
+
+                    //PrintWriter pw =new PrintWriter(new FileOutputStream(f,true));
                     pw.append(Name).append(",").append("" + rollNo).append(",").append(Address).append(",").append("" + age).append("\n");
                     pw.flush();
                     pw.close();
-                }catch(FileNotFoundException E){
+                }catch(Exception E){
                     System.out.println("File Not Found... Writing Data Failed");
                 }
                 }

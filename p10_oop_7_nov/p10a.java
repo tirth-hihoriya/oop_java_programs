@@ -75,7 +75,7 @@ class Printer extends Thread
             }
             catch(InterruptedException ie)
             {
-                System.out.println("Excetion  occoured.....!!!");
+                System.out.println("Exception  occured.....!!!");
             }
         }
     }

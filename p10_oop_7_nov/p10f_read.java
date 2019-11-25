@@ -12,6 +12,7 @@ public class p10f_read {
         try {
             sca = new Scanner(file);
             sca.useDelimiter("[\n,]");
+            
 
             while (sca.hasNext()) {
                 System.out.println("Name: " + sca.next() + "\nRoll No: " + sca.next() + "\nAddress: " + sca.next() + "\nAge: " + sca.next() + "\n\n\n");                
